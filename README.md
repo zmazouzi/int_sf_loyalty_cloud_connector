@@ -1,0 +1,1 @@
+# int_sf_loyalty_cloud_connector
