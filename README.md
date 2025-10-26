@@ -261,8 +261,6 @@ Enable detailed logging by setting:
 
 ## License
 
-This cartridge is proprietary software. Please refer to your license agreement for usage terms and conditions.
-
 ---
 
 *Last updated: October 2025*
