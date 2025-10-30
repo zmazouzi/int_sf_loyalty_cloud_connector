@@ -1,0 +1,9 @@
+@import "~base/contactUs";
+
+.loyalty-message {
+    @include toast-message;
+}
+
+.loyalty-alert {
+    @include toast-alert;
+}

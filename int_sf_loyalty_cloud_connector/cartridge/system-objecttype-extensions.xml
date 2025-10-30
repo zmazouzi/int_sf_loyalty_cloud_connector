@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xmlns="http://www.demandware.com/xml/impex/metadata/2006-10-31">
+    
+    <!-- Enhanced Customer Profile Extensions for Loyalty Cloud -->
+    <type-extension type-id="Customer">
+        <custom-attribute-definitions>
+            <!-- Enhanced Loyalty Attributes -->
+            <attribute-definition attribute-id="loyaltyCloudMemberId">
+                <display-name xml:lang="x-default">Loyalty Cloud Member ID</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>true</externally-managed-flag>
+                <min-length>0</min-length>
+                <field-length>50</field-length>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        
+        <group-definitions>
+            <!-- Enhanced Loyalty Group -->
+            <attribute-group group-id="LoyaltyCloud">
+                <display-name xml:lang="x-default">Loyalty Cloud</display-name>
+                <attribute attribute-id="loyaltyCloudMemberId"/>
+            </attribute-group>
+        </group-definitions>
+    </type-extension>
+
+    
+    <!-- Enhanced Site Extensions for Loyalty Cloud Configuration -->
+    <type-extension type-id="Site">
+        <custom-attribute-definitions>
+            <!-- Loyalty Cloud API Configuration -->
+            <attribute-definition attribute-id="LoyaltyCloud_clientId">
+                <display-name xml:lang="x-default">Loyalty Cloud Client ID</display-name>
+                <description xml:lang="x-default">Salesforce Connected App Client ID for Loyalty Cloud APIs</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="LoyaltyCloud_clientSecret">
+                <display-name xml:lang="x-default">Loyalty Cloud Client Secret</display-name>
+                <description xml:lang="x-default">Salesforce Connected App Client Secret for Loyalty Cloud APIs</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="LoyaltyCloud_username">
+                <display-name xml:lang="x-default">Loyalty Cloud Username</display-name>
+                <description xml:lang="x-default">Salesforce username for Loyalty Cloud API authentication</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="LoyaltyCloud_password">
+                <display-name xml:lang="x-default">Loyalty Cloud Password</display-name>
+                <description xml:lang="x-default">Salesforce password for Loyalty Cloud API authentication</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="LoyaltyCloud_secretToken">
+                <display-name xml:lang="x-default">Loyalty Cloud Secret Token</display-name>
+                <description xml:lang="x-default">Salesforce security token for Loyalty Cloud API authentication</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="LoyaltyCloud_endpoint">
+                <display-name xml:lang="x-default">Loyalty Cloud Endpoint</display-name>
+                <description xml:lang="x-default">Salesforce instance URL for Loyalty Cloud APIs</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+                <default-value>https://login.salesforce.com</default-value>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="LoyaltyCloud_programName">
+                <display-name xml:lang="x-default">Loyalty Cloud Program Name</display-name>
+                <description xml:lang="x-default">Name of the loyalty program in Salesforce Loyalty Cloud</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+                <default-value>Volare</default-value>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="LoyaltyCloud_qualifyingCurrencyName">
+                <display-name xml:lang="x-default">Loyalty Cloud Qualifying Currency Name</display-name>
+                <description xml:lang="x-default">Name of the qualifying points currency in Salesforce Loyalty Cloud</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+                <default-value>Qualifying Points</default-value>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="LoyaltyCloud_nonQualifyingCurrencyName">
+                <display-name xml:lang="x-default">Loyalty Cloud Non-Qualifying Currency Name</display-name>
+                <description xml:lang="x-default">Name of the non-qualifying points currency in Salesforce Loyalty Cloud</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+                <default-value>Non-Qualifying Points</default-value>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="LoyaltyCloud_apiVersion">
+                <display-name xml:lang="x-default">Loyalty Cloud API Version</display-name>
+                <description xml:lang="x-default">Salesforce API version for Loyalty Cloud APIs</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+                <default-value>60.0</default-value>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="LoyaltyCloud_accessToken">
+                <display-name xml:lang="x-default">Loyalty Cloud Access Token</display-name>
+                <description xml:lang="x-default">Current access token for Loyalty Cloud APIs (managed automatically)</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="LoyaltyCloud_tokenExpiry">
+                <display-name xml:lang="x-default">Loyalty Cloud Token Expiry</display-name>
+                <description xml:lang="x-default">Access token expiry timestamp (managed automatically)</description>
+                <type>datetime</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+            
+            <!-- Enhanced Loyalty Cloud Settings -->
+            <attribute-definition attribute-id="LoyaltyCloud_enableSync">
+                <display-name xml:lang="x-default">Enable Loyalty Cloud Sync</display-name>
+                <description xml:lang="x-default">Enable automatic synchronization with Loyalty Cloud</description>
+                <type>boolean</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <default-value>true</default-value>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="LoyaltyCloud_syncInterval">
+                <display-name xml:lang="x-default">Loyalty Cloud Sync Interval (minutes)</display-name>
+                <description xml:lang="x-default">Interval in minutes for automatic synchronization</description>
+                <type>int</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <default-value>60</default-value>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="LoyaltyCloud_enableGamification">
+                <display-name xml:lang="x-default">Enable Gamification</display-name>
+                <description xml:lang="x-default">Enable gamification features in Loyalty Cloud</description>
+                <type>boolean</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <default-value>false</default-value>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="LoyaltyCloud_enablePromotions">
+                <display-name xml:lang="x-default">Enable Promotions</display-name>
+                <description xml:lang="x-default">Enable promotion management features in Loyalty Cloud</description>
+                <type>boolean</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <default-value>true</default-value>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="LoyaltyCloud_enableVouchers">
+                <display-name xml:lang="x-default">Enable Vouchers</display-name>
+                <description xml:lang="x-default">Enable voucher management features in Loyalty Cloud</description>
+                <type>boolean</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <default-value>true</default-value>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="LoyaltyCloud_debugMode">
+                <display-name xml:lang="x-default">Loyalty Cloud Debug Mode</display-name>
+                <description xml:lang="x-default">Enable debug logging for Loyalty Cloud operations</description>
+                <type>boolean</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <default-value>false</default-value>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        
+        <group-definitions>
+            <!-- Loyalty Cloud Configuration Group -->
+            <attribute-group group-id="LoyaltyCloudConfig">
+                <display-name xml:lang="x-default">Loyalty Cloud Configuration</display-name>
+                <attribute attribute-id="LoyaltyCloud_clientId"/>
+                <attribute attribute-id="LoyaltyCloud_clientSecret"/>
+                <attribute attribute-id="LoyaltyCloud_username"/>
+                <attribute attribute-id="LoyaltyCloud_password"/>
+                <attribute attribute-id="LoyaltyCloud_secretToken"/>
+                <attribute attribute-id="LoyaltyCloud_endpoint"/>
+                <attribute attribute-id="LoyaltyCloud_programName"/>
+                <attribute attribute-id="LoyaltyCloud_qualifyingCurrencyName"/>
+                <attribute attribute-id="LoyaltyCloud_nonQualifyingCurrencyName"/>
+                <attribute attribute-id="LoyaltyCloud_apiVersion"/>
+                <attribute attribute-id="LoyaltyCloud_accessToken"/>
+                <attribute attribute-id="LoyaltyCloud_tokenExpiry"/>
+                <attribute attribute-id="LoyaltyCloud_enableSync"/>
+                <attribute attribute-id="LoyaltyCloud_syncInterval"/>
+                <attribute attribute-id="LoyaltyCloud_enableGamification"/>
+                <attribute attribute-id="LoyaltyCloud_enablePromotions"/>
+                <attribute attribute-id="LoyaltyCloud_enableVouchers"/>
+                <attribute attribute-id="LoyaltyCloud_debugMode"/>
+            </attribute-group>
+        </group-definitions>
+    </type-extension>
+    
+    <!-- Enhanced PaymentInstrument Extensions for Loyalty Cloud Vouchers -->
+    <type-extension type-id="PaymentInstrument">
+        <custom-attribute-definitions>
+            <attribute-definition attribute-id="voucherCode">
+                <display-name xml:lang="x-default">Voucher Code</display-name>
+                <description xml:lang="x-default">Loyalty voucher code applied to this payment instrument</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+                <field-length>50</field-length>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="voucherId">
+                <display-name xml:lang="x-default">Voucher ID</display-name>
+                <description xml:lang="x-default">Loyalty voucher ID from Loyalty Cloud</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+                <field-length>50</field-length>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="voucherFaceValue">
+                <display-name xml:lang="x-default">Voucher Face Value</display-name>
+                <description xml:lang="x-default">Face value of the loyalty voucher</description>
+                <type>number</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+            
+            <attribute-definition attribute-id="voucherRedeemedAmount">
+                <display-name xml:lang="x-default">Voucher Redeemed Amount</display-name>
+                <description xml:lang="x-default">Amount redeemed from the loyalty voucher</description>
+                <type>number</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+        </custom-attribute-definitions>
+    </type-extension>
+    
+</metadata>

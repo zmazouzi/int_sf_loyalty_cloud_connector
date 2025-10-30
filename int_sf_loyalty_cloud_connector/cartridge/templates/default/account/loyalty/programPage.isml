@@ -1,0 +1,307 @@
+<isdecorate template="common/layout/page">
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addCss('/css/account/profile.css');
+        assets.addJs('/js/profile.js');
+    </isscript>
+    <div class="hero slant-down account-image">
+        <h1 class="page-title">${pdict.loyaltyProgram.programName}</h1>
+    </div>
+    <div class="container">
+        <!---Breadcrumbs--->
+        <isinclude template="components/breadcrumbs/pageBreadcrumbs" />
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                <div class="card">
+                    <div class="card-body">
+                        <isif condition="${pdict.loyaltyProgram}">
+                            <!-- Only show everything below if loyaltyProgram, otherwise hide all loyalty-program UI -->
+                            <div class="loyalty-program-item">
+                                <isif condition="${pdict.loyaltyProgram.memberStatus == 'Active'}">
+                                    <div class="dashboard-info pb-3">
+                                        <div class="membership-number">
+                                            ${Resource.msg('label.membershipnumber', 'loyalty', null)}:
+                                            ${pdict.loyaltyProgram.membershipNumber}</div>
+                                        <div>${Resource.msg('label.memberstatus', 'loyalty', null)}:
+                                            ${pdict.loyaltyProgram.memberStatus}</div>
+                                        <isif condition="${pdict.loyaltyProgram.qualifyingPoints}">
+                                            <div class="qualifying-points">
+                                                ${Resource.msg('label.qualifyingpoints', 'loyalty', null)}:
+                                                ${pdict.loyaltyProgram.qualifyingPoints}</div>
+                                        </isif>
+                                        <isif condition="${pdict.loyaltyProgram.nonQualifyingPoints}">
+                                            <div class="non-qualifying-points">
+                                                ${Resource.msg('label.nonqualifyingpoints', 'loyalty', null)}:
+                                                ${pdict.loyaltyProgram.nonQualifyingPoints}</div>
+                                        </isif>
+                                        <isif condition="${pdict.loyaltyProgram.totalPoints}">
+                                            <div class="total-points font-weight-bold">
+                                                ${Resource.msg('label.totalpoints', 'loyalty', null)}:
+                                                ${pdict.loyaltyProgram.totalPoints}</div>
+                                        </isif>
+                                        <isif condition="${pdict.loyaltyProgram.tier}">
+                                            <div class="tier">${Resource.msg('label.loyaltytier', 'loyalty', null)}:
+                                                <isif condition="${pdict.loyaltyProgram.tier === 'Silver'}">
+                                                    <span class="badge badge-info">${pdict.loyaltyProgram.tier}</span>
+                                                <iselseif condition="${pdict.loyaltyProgram.tier === 'Gold'}"/>
+                                                    <span class="badge badge-warning">${pdict.loyaltyProgram.tier}</span>
+                                                <iselseif condition="${pdict.loyaltyProgram.tier === 'Platinum'}"/>
+                                                    <span class="badge badge-dark">${pdict.loyaltyProgram.tier}</span>
+                                                <iselse/>
+                                                    <span class="badge badge-info">${pdict.loyaltyProgram.tier}</span>
+                                                </isif>
+                                            </div>
+                                        </isif>
+                                        <isif condition="${pdict.loyaltyProgram.enrollmentDate}">
+                                            <div class="enrollment-date">
+                                                ${Resource.msg('label.enrollmentdate', 'loyalty', null)}:
+                                                ${pdict.loyaltyProgram.enrollmentDate}</div>
+                                        </isif>
+                                    </div>
+                                </isif>
+
+                                <div class="loyalty-program-actions">
+
+                                </div>
+
+                                <!-- Tabs Section -->
+                                <div class="loyalty-tabs mt-4">
+                                    <ul class="nav nav-tabs nav-fill" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <isif condition="${pdict.activeTab == 'track'}">
+                                                <a class="nav-link active" href="#track" onclick="showTab('track'); return false;">
+                                                    ${Resource.msg('label.track', 'loyalty', 'Track')}
+                                                </a>
+                                            <iselse/>
+                                                <a class="nav-link" href="#track" onclick="showTab('track'); return false;">
+                                                    ${Resource.msg('label.track', 'loyalty', 'Track')}
+                                                </a>
+                                            </isif>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <isif condition="${pdict.activeTab == 'earn'}">
+                                                <a class="nav-link active" href="#earn" onclick="showTab('earn'); return false;">
+                                                    ${Resource.msg('label.earn', 'loyalty', 'Earn')}
+                                                </a>
+                                            <iselse/>
+                                                <a class="nav-link" href="#earn" onclick="showTab('earn'); return false;">
+                                                    ${Resource.msg('label.earn', 'loyalty', 'Earn')}
+                                                </a>
+                                            </isif>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <isif condition="${pdict.activeTab == 'vouchers'}">
+                                                <a class="nav-link active" href="#vouchers" onclick="showTab('vouchers'); return false;">
+                                                    ${Resource.msg('label.vouchers', 'loyalty', 'Vouchers')}
+                                                </a>
+                                            <iselse/>
+                                                <a class="nav-link" href="#vouchers" onclick="showTab('vouchers'); return false;">
+                                                    ${Resource.msg('label.vouchers', 'loyalty', 'Vouchers')}
+                                                </a>
+                                            </isif>
+                                        </li>
+                                    </ul>
+                                    
+                                    <div class="tab-content mt-3">
+                                        <!-- Track Tab -->
+                                        <div class="tab-pane<isif condition="${pdict.activeTab == 'track'}"> active</isif>" id="track">
+                                            <!-- Transaction History Section -->
+                                            <iscomment> <isinclude template="account/loyalty/transactionHistory" /> </iscomment>
+
+                                            <!-- Transaction Ledger Summary Section -->
+                                            <isinclude template="account/loyalty/transactionLedgerSummary" />
+                                        </div>
+                                        
+                                        <!-- Earn Tab -->
+                                        <div class="tab-pane<isif condition="${pdict.activeTab == 'earn'}"> active</isif>" id="earn">
+                                            <div class="earn-actions-list">
+                                                <h6 class="mb-3">${Resource.msg('label.earnpoints', 'loyalty', 'Ways to Earn Points')}</h6>
+                                                
+                                                <div class="earn-action-item border rounded p-3 mb-3">
+                                                    <div class="earn-action-title">
+                                                        <strong>${Resource.msg('label.shareonx', 'loyalty', 'Share on X')}</strong>
+                                                    </div>
+                                                    <div class="earn-action-description text-muted small">
+                                                        ${Resource.msg('label.shareonxdesc', 'loyalty', 'Share our content on X (formerly Twitter) to earn points')}
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="earn-action-item border rounded p-3 mb-3">
+                                                    <div class="earn-action-title">
+                                                        <strong>${Resource.msg('label.shareonfacebook', 'loyalty', 'Share on Facebook')}</strong>
+                                                    </div>
+                                                    <div class="earn-action-description text-muted small">
+                                                        ${Resource.msg('label.shareonfacebookdesc', 'loyalty', 'Share our content on Facebook to earn points')}
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="earn-action-item border rounded p-3 mb-3">
+                                                    <div class="earn-action-title">
+                                                        <strong>${Resource.msg('label.spinthewheel', 'loyalty', 'Spin the Wheel')}</strong>
+                                                    </div>
+                                                    <div class="earn-action-description text-muted small">
+                                                        ${Resource.msg('label.spinthewheeldesc', 'loyalty', 'Spin the wheel for a chance to win bonus points')}
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="earn-action-item border rounded p-3 mb-3">
+                                                    <div class="earn-action-title">
+                                                        <strong>${Resource.msg('label.purchaseproducts', 'loyalty', 'Purchase Products')}</strong>
+                                                    </div>
+                                                    <div class="earn-action-description text-muted small">
+                                                        <div>${Resource.msg('label.purchaseproductsdesc1', 'loyalty', '1 point per dollar spent on regular products')}</div>
+                                                        <div>${Resource.msg('label.purchaseproductsdesc2', 'loyalty', '10 points per dollar spent on promotion products')}</div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="earn-action-item border rounded p-3 mb-3">
+                                                    <div class="earn-action-title">
+                                                        <strong>${Resource.msg('label.subscribenewsletter', 'loyalty', 'Subscribe to Newsletter')}</strong>
+                                                    </div>
+                                                    <div class="earn-action-description text-muted small">
+                                                        ${Resource.msg('label.subscribenewsletterdesc', 'loyalty', 'Subscribe to our newsletter to earn bonus points')}
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="earn-action-item border rounded p-3 mb-3">
+                                                    <div class="earn-action-title">
+                                                        <strong>${Resource.msg('label.transferpoints', 'loyalty', 'Transfer Points')}</strong>
+                                                    </div>
+                                                    <div class="earn-action-description text-muted small">
+                                                        ${Resource.msg('label.transferpointsdesc', 'loyalty', 'Transfer points from other loyalty programs')}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Vouchers Tab -->
+                                        <div class="tab-pane<isif condition="${pdict.activeTab == 'vouchers'}"> active</isif>" id="vouchers">
+                                            <isif condition="${pdict.loyaltyProgram.vouchers && pdict.loyaltyProgram.vouchers.length > 0}">
+                                                <div class="vouchers-list">
+                                                    <h6 class="mb-3">${Resource.msg('label.myvouchers', 'loyalty', 'My Vouchers')} (${pdict.loyaltyProgram.vouchers.length})</h6>
+                                                    <isloop items="${pdict.loyaltyProgram.vouchers}" var="voucher" status="voucherStatus">
+                                                        <div class="voucher-item border rounded p-3 mb-3">
+                                                            <div class="row align-items-center position-relative">
+                                                                <button type="button" class="btn btn-sm btn-outline-secondary ml-2 position-absolute clipboard-button" onclick="copyToClipboard('${voucher.voucherCode}')"
+                                                                    title="${Resource.msg('button.copytoclipboard', 'loyalty', 'Copy to Clipboard')}">
+                                                                    copy to clipboard
+                                                                </button>
+                                                                <div class="col-md-8 mt-5">
+                                                                    <div class="voucher-code d-flex align-items-center">
+                                                                        <strong>${Resource.msg('label.vouchercode', 'loyalty', 'Voucher Code')}: ${voucher.voucherCode}</strong>
+                                                                    </div>
+                                                                    <div class="voucher-details text-muted small">
+                                                                        <div>${Resource.msg('label.voucherdefinition', 'loyalty', 'Definition')}: ${voucher.voucherDefinition}</div>
+                                                                        <div>${Resource.msg('label.vouchervalue', 'loyalty', 'Value')}: $${voucher.faceValue} ${voucher.currency}</div>
+                                                                        <isif condition="${voucher.remainingValue < voucher.faceValue}">
+                                                                            <div>${Resource.msg('label.remainingvalue', 'loyalty', 'Remaining')}: $${voucher.remainingValue} ${voucher.currency}</div>
+                                                                        </isif>
+                                                                        <div>${Resource.msg('label.vouchertype', 'loyalty', 'Type')}: ${voucher.type}</div>
+                                                                        <isif condition="${voucher.effectiveDate}">
+                                                                            <div>${Resource.msg('label.effectivedate', 'loyalty', 'Effective')}: ${voucher.effectiveDate}</div>
+                                                                        </isif>
+                                                                        <isif condition="${voucher.expirationDate}">
+                                                                            <div>${Resource.msg('label.voucherexpiry', 'loyalty', 'Expires')}: ${voucher.expirationDate}</div>
+                                                                        </isif>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4 text-right">
+                                                                    <span class="badge ${voucher.statusClass}">${voucher.status}</span>
+                                                                    <isif condition="${voucher.isExpired}">
+                                                                        <br><small class="text-danger">${Resource.msg('label.expired', 'loyalty', 'Expired')}</small>
+                                                                    </isif>
+                                                                    <isif condition="${voucher.isVoucherPartiallyRedeemable}">
+                                                                        <br><small class="text-info">${Resource.msg('label.partiallyredeemable', 'loyalty', 'Partially Redeemable')}</small>
+                                                                    </isif>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </isloop>
+                                                </div>
+                                            <iselse/>
+                                                <div class="text-center text-muted py-4">
+                                                    <div class="mb-3">
+                                                        <i class="fas fa-ticket-alt fa-3x text-muted"></i>
+                                                    </div>
+                                                    <h5>${Resource.msg('message.novouchers', 'loyalty', 'No vouchers redeemed yet')}</h5>
+                                                    <p class="text-muted">${Resource.msg('message.novouchersdesc', 'loyalty', 'You haven\'t redeemed any vouchers yet. Use your loyalty points to get vouchers!')}</p>
+                                                </div>
+                                            </isif>
+                                            
+                                            <!-- Redeem Voucher Button -->
+                                            <div class="text-center mt-4">
+                                                <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#redeemVoucherModal">
+                                                    ${Resource.msg('button.redeemvoucher', 'loyalty', 'Redeem Voucher')}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <style>
+                                    .tab-pane {
+                                        display: none;
+                                    }
+                                    .tab-pane.active {
+                                        display: block;
+                                    }
+                                    .nav-link {
+                                        cursor: pointer;
+                                    }
+                                    .nav-link.active {
+                                        background-color: #007bff;
+                                        color: white;
+                                    }
+                                </style>
+                            </div>
+                        <iselse/>
+                            <div class="text-center text-muted py-4">
+                                ${Resource.msg('error.noprograms', 'loyalty', 'No loyalty program data available.')}
+                            </div>
+                        </isif>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Redeem Voucher Modal -->
+    <div class="modal fade" id="redeemVoucherModal" tabindex="-1" aria-labelledby="redeemVoucherModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="redeemVoucherModalLabel">${Resource.msg('modal.redeemvoucher.title', 'loyalty', 'Redeem Voucher')}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="redeemVoucherForm">
+                        <div class="form-group">
+                            <label for="pointsToRedeem">${Resource.msg('modal.redeemvoucher.points', 'loyalty', 'Points to Redeem')}</label>
+                            <input type="number" class="form-control" id="pointsToRedeem" name="pointsToRedeem" 
+                                   min="1000" max="${pdict.loyaltyProgram.totalPoints || 0}" step="100"
+                                   placeholder="${Resource.msg('modal.redeemvoucher.pointsplaceholder', 'loyalty', 'Enter points to redeem (minimum 1000)')}" required>
+                            <small class="form-text text-muted">
+                                ${Resource.msg('modal.redeemvoucher.availablepoints', 'loyalty', 'Available Points')}: ${pdict.loyaltyProgram.totalPoints || 0}
+                            </small>
+                            <div class="alert alert-info mt-2">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                ${Resource.msg('modal.redeemvoucher.conversionrate', 'loyalty', 'You get $1 for every 100 points redeemed')}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        ${Resource.msg('button.cancel', 'loyalty', 'Cancel')}
+                    </button>
+                    <button data-url="${URLUtils.url('Voucher-SubmitRedeemVoucher')}" type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#redeemVoucherModal" id="submitRedeemVoucher">
+                        ${Resource.msg('button.redeem', 'loyalty', 'Redeem')}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</isdecorate>

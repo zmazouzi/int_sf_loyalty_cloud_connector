@@ -1,0 +1,8 @@
+{
+    "hooks": [
+        {
+            "name": "app.payment.processor.loyalty_management_voucher",
+            "script": "./cartridge/scripts/hooks/payment/processor/loyalty_management_voucher"
+        }
+    ]
+}

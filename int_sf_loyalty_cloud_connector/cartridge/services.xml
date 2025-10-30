@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns="http://www.demandware.com/xml/impex/services/2014-09-26">
+    <service-credential service-credential-id="LoyaltyCloud_enrollProgramMember">
+        <url>services/data/version/loyalty-programs/program-name/corporate-member-enrollments</url>
+    </service-credential>
+
+    <service-credential service-credential-id="LoyaltyCloud_genericQuery">
+        <url>services/data/version/query</url>
+    </service-credential>
+
+    <service-credential service-credential-id="LoyaltyCloud_getMemberProfile">
+        <url>services/data/version/loyalty-programs/loyalty-program-name/members</url>
+    </service-credential>
+
+    <service-credential service-credential-id="LoyaltyCloud_getToken">
+        <url>https://login.salesforce.com/services/oauth2/token</url>
+    </service-credential>
+
+    <service-credential service-credential-id="LoyaltyCloud_getVouchers">
+        <url>services/data/version/loyalty/programs/loyalty-program-name/members/membership-number/vouchers</url>
+    </service-credential>
+
+    <service-credential service-credential-id="LoyaltyCloud_invokeProcessRule">
+        <url>services/data/version/connect/loyalty/programs/loyalty-program-name/program-processes/process-name</url>
+    </service-credential>
+
+    <service-credential service-credential-id="LoyaltyCloud_transactionHistory">
+        <url>services/data/version/connect/loyalty/programs/loyalty-program-name/transaction-history</url>
+    </service-credential>
+
+    <service-credential service-credential-id="LoyaltyCloud_transactionJournalsExecution">
+        <url>services/data/version/connect/realtime/loyalty/programs/loyalty-program-name</url>
+    </service-credential>
+
+    <service-credential service-credential-id="LoyaltyCloud_transactionLedgerSummary">
+        <url>services/data/version/loyalty/programs/loyalty-program-name/members/membership-number/transaction-ledger-summary</url>
+    </service-credential>
+
+    <service-profile service-profile-id="LoyaltyCloudProfile">
+        <timeout-millis>10000</timeout-millis>
+        <rate-limit-enabled>false</rate-limit-enabled>
+        <rate-limit-calls>0</rate-limit-calls>
+        <rate-limit-millis>0</rate-limit-millis>
+        <cb-enabled>false</cb-enabled>
+        <cb-calls>0</cb-calls>
+        <cb-millis>0</cb-millis>
+    </service-profile>
+
+    <service-profile service-profile-id="StripeProfile">
+        <timeout-millis>3000</timeout-millis>
+        <rate-limit-enabled>true</rate-limit-enabled>
+        <rate-limit-calls>5</rate-limit-calls>
+        <rate-limit-millis>100</rate-limit-millis>
+        <cb-enabled>true</cb-enabled>
+        <cb-calls>5</cb-calls>
+        <cb-millis>500</cb-millis>
+    </service-profile>
+
+    <service service-id="LoyaltyCloud_enrollProgramMembers">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix>LoyaltyCloud</log-prefix>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>LoyaltyCloudProfile</profile-id>
+        <credential-id>LoyaltyCloud_enrollProgramMember</credential-id>
+    </service>
+
+    <service service-id="LoyaltyCloud_genericQuery">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix/>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>LoyaltyCloudProfile</profile-id>
+        <credential-id>LoyaltyCloud_genericQuery</credential-id>
+    </service>
+
+    <service service-id="LoyaltyCloud_getMemberProfile">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix/>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>LoyaltyCloudProfile</profile-id>
+        <credential-id>LoyaltyCloud_getMemberProfile</credential-id>
+    </service>
+
+    <service service-id="LoyaltyCloud_getToken">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix>LoyaltyCloud</log-prefix>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>LoyaltyCloudProfile</profile-id>
+        <credential-id>LoyaltyCloud_getToken</credential-id>
+    </service>
+
+    <service service-id="LoyaltyCloud_getVouchers">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix/>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>LoyaltyCloudProfile</profile-id>
+        <credential-id>LoyaltyCloud_getVouchers</credential-id>
+    </service>
+
+    <service service-id="LoyaltyCloud_invokeProcessRule">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix/>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>LoyaltyCloudProfile</profile-id>
+        <credential-id>LoyaltyCloud_invokeProcessRule</credential-id>
+    </service>
+
+    <service service-id="LoyaltyCloud_transactionHistory">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix/>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>LoyaltyCloudProfile</profile-id>
+        <credential-id>LoyaltyCloud_transactionHistory</credential-id>
+    </service>
+
+    <service service-id="LoyaltyCloud_transactionJournalsExecution">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix/>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>LoyaltyCloudProfile</profile-id>
+        <credential-id>LoyaltyCloud_transactionJournalsExecution</credential-id>
+    </service>
+
+    <service service-id="LoyaltyCloud_transactionLedgerSummary">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix/>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>LoyaltyCloudProfile</profile-id>
+        <credential-id>LoyaltyCloud_transactionLedgerSummary</credential-id>
+    </service>
+
+</services>

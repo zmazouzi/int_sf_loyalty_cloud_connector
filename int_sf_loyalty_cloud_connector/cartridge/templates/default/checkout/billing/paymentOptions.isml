@@ -1,0 +1,58 @@
+<!-- Voucher Code Section -->
+<div class="voucher-section mb-4 mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h6 class="mb-0">${Resource.msg('label.vouchercode', 'checkout', 'Voucher Code')}</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="voucherCode" class="sr-only">${Resource.msg('label.vouchercode', 'checkout', 'Voucher Code')}</label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="voucherCode" 
+                               name="voucherCode" 
+                               placeholder="${Resource.msg('placeholder.vouchercode', 'checkout', 'Enter your voucher code')}"
+                               maxlength="50">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" 
+                            class="btn btn-outline-primary w-100" 
+                            id="applyVoucherBtn"
+                            data-url="${URLUtils.url('Loyalty-ApplyVoucher')}">
+                        ${Resource.msg('button.applyvoucher', 'checkout', 'Apply Voucher')}
+                    </button>
+                </div>
+            </div>
+            <div id="voucherMessage" class="mt-2${pdict.order.isVoucherApplied ? '' : ' d-none'}">
+                    <div class="alert alert-success"><strong>Voucher Applied Successfully!</strong><br>Your voucher will cover the entire order.</div>
+            </div>
+            <div class="mt-2 rollback-voucher-wrapper ${pdict.order.isVoucherApplied ? '' : ' d-none'}">
+                <button type="button" 
+                        class="btn btn-outline-danger w-100" 
+                        id="rollbackVoucherBtn"
+                        data-url="${URLUtils.url('Loyalty-RollbackVoucher')}">
+                    ${Resource.msg('button.removevoucher', 'checkout', 'Remove Voucher')}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-nav billing-nav payment-information ${pdict.order.isVoucherApplied ? ' d-none voucher-applied' : ''}"
+     data-payment-method-id="CREDIT_CARD"
+     data-is-new-payment="${pdict.customer.registeredUser && pdict.customer.customerPaymentInstruments.length ? false : true}"
+>
+    <ul class="nav nav-tabs nav-fill payment-options" role="tablist">
+        <isinclude template="checkout/billing/paymentOptions/paymentOptionsTabs" />
+    </ul>
+</div>
+
+
+
+<div class="credit-card-selection-new${pdict.order.isVoucherApplied ? ' d-none' : ''}">
+    <div class="tab-content">
+        <isinclude template="checkout/billing/paymentOptions/paymentOptionsContent" />
+    </div>
+</div>
