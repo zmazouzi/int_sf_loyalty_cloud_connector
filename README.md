@@ -1,4 +1,4 @@
-# Salesforce Loyalty Cloud Connector
+# SFCC Loyalty Cloud Connector
 
 A comprehensive Salesforce Commerce Cloud cartridge that integrates with Salesforce Loyalty Cloud to provide loyalty program management, voucher redemption, and member profile functionality. This connector can be extended to implement more features provided by Loyalty Management Cloud, such as gamification and promotions.
 
@@ -65,18 +65,18 @@ Create a Salesforce Connected App for the username-password flow:
 
 Set up the following site preferences in Business Manager:
 
-| Preference | Description |
-|------------|-------------|
-| `LoyaltyCloud_clientId` | Salesforce Connected App Consumer Key |
-| `LoyaltyCloud_clientSecret` | Salesforce Connected App Consumer Secret |
-| `LoyaltyCloud_username` | Salesforce username for API access |
-| `LoyaltyCloud_password` | Salesforce password |
-| `LoyaltyCloud_secretToken` | Salesforce security token |
-| `LoyaltyCloud_endpoint` | Salesforce instance URL |
-| `LoyaltyCloud_apiVersion` | API version to use |
-| `LoyaltyCloud_programName` | Loyalty program name |
-| `LoyaltyCloud_qualifyingCurrencyName` | Qualifying points currency name |
-| `LoyaltyCloud_nonQualifyingCurrencyName` | Non-qualifying points currency name |
+| Preference | Description | Example |
+|------------|-------------|---------|
+| `LoyaltyCloud_clientId` | Salesforce Connected App Consumer Key | `3MVG9...` |
+| `LoyaltyCloud_clientSecret` | Salesforce Connected App Consumer Secret | `1234567890...` |
+| `LoyaltyCloud_username` | Salesforce username for API access | `api@yourcompany.com` |
+| `LoyaltyCloud_password` | Salesforce password | `yourpassword` |
+| `LoyaltyCloud_secretToken` | Salesforce security token | `ABC123...` |
+| `LoyaltyCloud_endpoint` | Salesforce instance URL | `https://yourinstance.salesforce.com` |
+| `LoyaltyCloud_apiVersion` | API version to use | `64.0` |
+| `LoyaltyCloud_programName` | Loyalty program name | `Volare` |
+| `LoyaltyCloud_qualifyingCurrencyName` | Qualifying points currency name | `Qualifying Points` |
+| `LoyaltyCloud_nonQualifyingCurrencyName` | Non-qualifying points currency name | `Non-Qualifying Points` |
 
 ### 4. Schedule Data Sync Job
 
@@ -111,6 +111,7 @@ Import the following metadata components:
     <force-prd-enabled>true</force-prd-enabled>
     <profile-id>loyaltyProfile</profile-id>
 </service>
+...
 ```
 
 #### system-objecttype-extensions.xml
@@ -151,29 +152,51 @@ Add the voucher payment section to your checkout page:
 
 > **Important**: Currently, vouchers can only be consumed if they cover the total order value. Split payment functionality will be included in the next release.
 
-## User Interface Walkthrough
+### 7. Configure SFRA Builder
 
-The following GIFs showcase the end-to-end experience: enrollment, voucher redemption, and checkout with the Loyalty Voucher payment method.
+Add the `loyalty` client path to your `sfraBuilderConfig.js` so the storefront assets are bundled correctly:
 
-<div style="display: flex; gap: 16px; align-items: flex-start; justify-content: center; flex-wrap: nowrap; overflow-x: auto; overflow-y: visible; margin: 20px 0;">
-  <div style="flex: 0 0 auto;">
-    <img src="screenshots/lm-connector-part1.gif" alt="Loyalty connector demo - part 1" style="display: block; height: auto; max-height: none; width: auto; max-width: none; border-radius: 6px; object-fit: contain;" />
-  </div>
-  <div style="flex: 0 0 auto;">
-    <img src="screenshots/lm-connector-part2.gif" alt="Loyalty connector demo - part 2" style="display: block; height: auto; max-height: none; width: auto; max-width: none; border-radius: 6px; object-fit: contain;" />
-  </div>
-  
-  <noscript>
-    <!-- Fallback text for environments without GIF support -->
-    Loyalty connector walkthrough is shown in two GIFs: lm-connector-part1.gif and lm-connector-part2.gif.
-  </noscript>
+```js
+loyalty: path.resolve(
+    process.cwd(),
+    'int_sf_loyalty_cloud_connector/cartridge/client/default/'
+),
+```
+
+## User Interface Screenshots
+
+The following screenshots demonstrate the comprehensive loyalty program integration, showcasing account management, loyalty program features, voucher redemption, payment processing, and checkout functionality. The interface provides seamless user experience for managing loyalty points, redeeming vouchers, and tracking transaction history.
+
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0;">
+
+![Earn Points Actions](screenshots/Earn%20Points%20Actions.png)
+*Earn points actions and loyalty program activities*
+
+![Transaction History and Activity Tracking](screenshots/Transaction%20history%20and%20activity%20tracking.png)
+*Transaction history and activity tracking interface*
+
+![Voucher Code Display and Management](screenshots/Voucher%20code%20display%20and%20management.png)
+*Voucher code display and management interface*
+
+![Redeem Voucher Popup](screenshots/Redeem%20voucher%20-popup.png)
+*Redeem voucher popup interface*
+
+![Payment Methods Including Loyalty Voucher Option](screenshots/Payment%20methods%20including%20loyalty%20voucher%20option.png)
+*Payment methods including loyalty voucher option*
+
+![Voucher Code Failed to Apply](screenshots/Voucher%20code%20failed%20to%20apply.png)
+*Voucher code failed to apply error handling*
+
+![Checkout Process with Voucher Integration](screenshots/Checkout%20process%20with%20voucher%20integration.png)
+*Checkout process with voucher integration*
+
 </div>
 
 ## API Reference
 
 ### Core Services
 
-#### LoyaltyCloudConnector.js
+#### connector.js
 Main service class providing all loyalty cloud integration functionality.
 
 **Key Methods:**
@@ -256,6 +279,9 @@ For technical support and questions:
 - Contact your system administrator for configuration issues
 
 ## License
+
+This cartridge is proprietary software. Please refer to your license agreement for usage terms and conditions.
+
 ---
 
 *Last updated: October 2025*
