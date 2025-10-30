@@ -134,13 +134,6 @@ Defines new custom objects:
 </payment-method>
 ```
 
-The component diagram below details the added custom attributes and the key metadata components:
-
-<div style="display: flex; justify-content: center; margin: 20px 0;">
-    <img src="screenshots/Components%20Diagram.png" alt="Component Diagram" style="max-width: 100%; height: auto;">
-</div>
-*Component diagram illustrating the structure and attributes of the integrated metadata components*
-
 ### 6. Add Voucher Payment Section
 
 Add the voucher payment section to your checkout page:
@@ -267,9 +260,6 @@ For technical support and questions:
 - Contact your system administrator for configuration issues
 
 ## License
-
-This cartridge is proprietary software. Please refer to your license agreement for usage terms and conditions.
-
 ---
 
 *Last updated: October 2025*
