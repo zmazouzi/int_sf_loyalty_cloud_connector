@@ -1,0 +1,9 @@
+@import "~base/components/footer";
+
+.loyalty-message {
+    @include toast-message;
+}
+
+.loyalty-alert {
+    @include toast-alert;
+}

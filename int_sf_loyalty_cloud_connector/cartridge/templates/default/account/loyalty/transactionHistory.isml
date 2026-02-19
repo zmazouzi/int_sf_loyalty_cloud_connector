@@ -1,0 +1,45 @@
+<isif condition="${pdict.loyaltyProgram.transactionHistory && pdict.loyaltyProgram.transactionHistory.length > 0}">
+    <div class="transaction-history-section mt-4">
+        <h5>${Resource.msg('label.transactionhistory', 'loyalty', null)}</h5>
+        <div class="transaction-history-summary mb-3">
+            <small class="text-muted">${Resource.msg('label.totaltransactions', 'loyalty', null)}:
+                ${pdict.loyaltyProgram.transactionHistoryTotal}</small>
+        </div>
+        <div class="transaction-list">
+            <isloop items="${pdict.loyaltyProgram.transactionHistory}" var="transaction" status="loopstatus">
+                <div class="transaction-item border-bottom py-2">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong>${Resource.msg('label.transactionname', 'loyalty', null)}</strong><br>
+                            <span class="text-muted">${transaction.Name}</span>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>${Resource.msg('label.activitydate', 'loyalty', null)}</strong><br>
+                            <span class="text-muted">${transaction.ActivityDate}</span>
+                        </div>
+                        <div class="col-md-2">
+                            <strong>${Resource.msg('label.status', 'loyalty', null)}</strong><br>
+                            <span
+                                class="badge badge-${transaction.Status == 'Processed' ? 'success' : 'warning'}">${transaction.Status}</span>
+                        </div>
+                        <div class="col-md-2">
+                            <strong>${Resource.msg('label.usagetype', 'loyalty', null)}</strong><br>
+                            <span class="text-muted">${transaction.UsageType}</span>
+                        </div>
+                        <div class="col-md-2">
+                            <strong>${Resource.msg('label.createddate', 'loyalty', null)}</strong><br>
+                            <span class="text-muted">${transaction.CreatedDate}</span>
+                        </div>
+                    </div>
+                </div>
+            </isloop>
+        </div>
+    </div>
+<iselse/>
+    <div class="transaction-history-section mt-4">
+        <h5>${Resource.msg('label.transactionhistory', 'loyalty', null)}</h5>
+        <div class="text-center text-muted py-3">
+            ${Resource.msg('message.notransactions', 'loyalty', null)}
+        </div>
+    </div>
+</isif>

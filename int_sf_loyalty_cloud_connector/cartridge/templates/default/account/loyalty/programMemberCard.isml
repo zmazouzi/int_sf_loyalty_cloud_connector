@@ -1,0 +1,79 @@
+
+<div class="card">
+    <div class="card-header clearfix">
+        <h4 class="pull-left">${Resource.msg('label.loyaltyprograms', 'loyalty', null)}</h4>
+        <isif condition="${pdict.loyaltyProgram}">
+            <a href="${URLUtils.url('Account-LoyaltyProgramDetails')}" class="pull-right"
+                aria-label="${Resource.msg('label.loyaltyprograms.viewall', 'loyalty', null)}">${Resource.msg('link.view', 'loyalty', null)}</a>
+        </isif>
+    </div>
+    <isif condition="${pdict.loyaltyProgram}">
+        <div class="card-body">
+            <isset name="program" value="${pdict.loyaltyProgram}" scope="page" />
+            <div class="loyalty-program-item">
+                <div class="dashboard-cards-block-title">${program.programName}</div>
+                <div class="member-status ${program.memberStatus == 'Active' ? '' : 'd-none'}">
+
+                    <div class="dashboard-info pb-3">
+                        <div class="membership-number">${Resource.msg('label.membershipnumber', 'loyalty', null)}: ${program.membershipNumber}
+                        </div>
+                        <div>${Resource.msg('label.memberstatus', 'loyalty', null)}: ${program.memberStatus}</div>
+                        <isif condition="${program.qualifyingPoints}">
+                            <div class="qualifying-points">${Resource.msg('label.qualifyingpoints', 'loyalty', null)}: ${program.qualifyingPoints}</div>
+                        </isif>
+                        <isif condition="${program.nonQualifyingPoints}">
+                            <div class="non-qualifying-points">${Resource.msg('label.nonqualifyingpoints', 'loyalty', null)}: ${program.nonQualifyingPoints}</div>
+                        </isif>
+                        <isif condition="${program.totalPoints}">
+                            <div class=" total-points font-weight-bold">${Resource.msg('label.totalpoints', 'loyalty', null)}: ${program.totalPoints}</div>
+                        </isif>
+                        <isif condition="${program.tier}">
+                            <div class="tier">${Resource.msg('label.loyaltytier', 'loyalty', null)}: 
+                                <isif condition="${program.tier === 'Silver'}">
+                                    <span class="badge badge-info">${program.tier}</span>
+                                <iselseif condition="${program.tier === 'Gold'}"/>
+                                    <span class="badge badge-warning">${program.tier}</span>
+                                <iselseif condition="${program.tier === 'Platinum'}"/>
+                                    <span class="badge badge-dark">${program.tier}</span>
+                                <iselse/>
+                                    <span class="badge badge-info">${program.tier}</span>
+                                </isif>
+                            </div>
+                        </isif>
+                        <isif condition="${program.enrollmentDate}">
+                            <div class="enrollment-date">${Resource.msg('label.enrollmentdate', 'loyalty', null)}: ${program.enrollmentDate}
+                            </div>
+                        </isif>
+                    </div>
+
+                </div>
+
+                <div class="loyalty-program-actions" id="loyalty-program-actions">
+                    <div class="loyalty-program-view-details ${program.memberStatus == 'Active' ? '' : 'd-none'}">
+                        <a href="${URLUtils.url('Account-LoyaltyProgramDetails')}"
+                            class="btn btn-sm btn-outline-primary"
+                            aria-label="${Resource.msg('label.viewprogramdetails', 'loyalty', null)}">${Resource.msg('link.viewdetails', 'loyalty', null)}</a>
+                    </div>
+                    <div class="loyalty-program-enroll ${program.memberStatus == 'Active' ? 'd-none' : ''}">
+                        <div data-href="${URLUtils.url('ProgramMember-EnrollMember')}" class="btn btn-sm enroll-program-member btn-outline-primary"
+                            aria-label="${Resource.msg('label.loyaltyprograms.enroll', 'loyalty', null)}">${Resource.msg('link.enrollprogram', 'loyalty', null)}</div>
+                    </div>
+                </div>
+                
+                <!-- Transaction History Summary -->
+                <isif condition="${program.transactionHistory && program.transactionHistory.length > 0}">
+                    <div class="transaction-summary mt-3">
+                        <small class="text-muted">
+                            ${Resource.msg('label.recenttransactions', 'loyalty', null)}: ${program.transactionHistoryTotal} 
+                            <a href="${URLUtils.url('Account-LoyaltyProgramDetails')}" class="ml-2">
+                                ${Resource.msg('link.viewall', 'loyalty', null)}
+                            </a>
+                        </small>
+                    </div>
+                </isif>
+
+            </div>
+        </div>
+    </isif>
+
+</div>

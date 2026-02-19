@@ -1,0 +1,56 @@
+<isif
+    condition="${pdict.loyaltyProgram.transactionLedgerSummary && pdict.loyaltyProgram.transactionLedgerSummary.length > 0}">
+    <div class="transaction-ledger-summary-section mt-4">
+        <h5>${Resource.msg('label.transactionledgersummary', 'loyalty', null)}</h5>
+        <div class="transaction-ledger-summary-info mb-3">
+            <small class="text-muted">${Resource.msg('label.transactionjournalcount', 'loyalty', null)}:
+                ${pdict.loyaltyProgram.transactionLedgerCount}</small>
+        </div>
+        <div class="transaction-ledger-list">
+            <isloop items="${pdict.loyaltyProgram.transactionLedgerSummary}" var="ledgerTransaction"
+                status="loopstatus">
+                <div class="ledger-transaction-item border-bottom py-3">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <strong>${Resource.msg('label.transactionnumber', 'loyalty', null)}</strong><br>
+                            <span class="text-muted">${ledgerTransaction.transactionJournalNumber}</span>
+                        </div>
+                        <div class="col-md-2">
+                            <strong>${Resource.msg('label.activitydate', 'loyalty', null)}</strong><br>
+                            <span class="text-muted">${ledgerTransaction.activityDate}</span>
+                        </div>
+                        <div class="col-md-2">
+                            <strong>${Resource.msg('label.journaltype', 'loyalty', null)}</strong><br>
+                            <span class="text-muted">${ledgerTransaction.journalTypeName}</span>
+                        </div>
+                        <div class="col-md-2">
+                            <strong>${Resource.msg('label.journalsubtype', 'loyalty', null)}</strong><br>
+                            <span class="text-muted">${ledgerTransaction.journalSubTypeName || 'N/A'}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <strong>${Resource.msg('label.pointschanges', 'loyalty', null)}</strong><br>
+                            <isif
+                                condition="${ledgerTransaction.pointsChange && ledgerTransaction.pointsChange.length > 0}">
+                                <isloop items="${ledgerTransaction.pointsChange}" var="pointChange"
+                                    status="pointStatus">
+                                    <span class="badge badge-info mr-1">
+                                        ${pointChange.changeInPoints} ${pointChange.loyaltyMemberCurrency}
+                                    </span>
+                                </isloop>
+                            <iselse/>
+                                <span class="text-muted">No points changes</span>
+                            </isif>
+                        </div>
+                    </div>
+                </div>
+            </isloop>
+        </div>
+    </div>
+<iselse/>
+    <div class="transaction-ledger-summary-section mt-4">
+        <h5>${Resource.msg('label.transactionledgersummary', 'loyalty', null)}</h5>
+        <div class="text-center text-muted py-3">
+            ${Resource.msg('message.noledgersummary', 'loyalty', null)}
+        </div>
+    </div>
+</isif>

@@ -1,0 +1,17 @@
+{
+  "step-types": {
+    "script-module-step": [
+      {
+        "@type-id": "custom.CSComponents.DataSync",
+        "@supports-site-context": true,
+        "@supports-organization-context": true,
+        "module": "int_sf_loyalty_cloud_connector/cartridge/scripts/jobsteps/dataSync.js",
+        "description": "Sync data from Loyalty Cloud to Salesforce.",
+        "function": "Run",
+        "parameters": {
+          "parameter": []
+        }
+      }
+    ]
+  }
+}
